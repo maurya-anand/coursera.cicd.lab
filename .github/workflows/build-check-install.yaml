@@ -18,7 +18,7 @@ on:
   workflow_dispatch:
   workflow_call:
     secrets:
-      GITHUB_TOKEN:
+      GH_PAT:
         description: |
           Github token with read access to repositories, required for staged.dependencies installation
         required: false
@@ -205,12 +205,12 @@ jobs:
       - name: Setup token 🔑
         id: github-token
         run: |
-          if [ "${{ secrets.GITHUB_TOKEN }}" == "" ]; then
-            echo "GITHUB_TOKEN is empty. Substituting it with GITHUB_TOKEN."
-            echo "token=${{ secrets.GITHUB_TOKEN }}" >> $GITHUB_OUTPUT
+          if [ "${{ secrets.GH_PAT }}" == "" ]; then
+            echo "GH_PAT is empty. Substituting it with GH_PAT."
+            echo "token=${{ secrets.GH_PAT }}" >> $GITHUB_OUTPUT
           else
-            echo "Using GITHUB_TOKEN."
-            echo "token=${{ secrets.GITHUB_TOKEN }}" >> $GITHUB_OUTPUT
+            echo "Using GH_PAT."
+            echo "token=${{ secrets.GH_PAT }}" >> $GITHUB_OUTPUT
           fi
         shell: bash
 
@@ -773,12 +773,12 @@ jobs:
       - name: Setup token 🔑
         id: github-token
         run: |
-          if [ "${{ secrets.GITHUB_TOKEN }}" == "" ]; then
-            echo "GITHUB_TOKEN is empty. Substituting it with GITHUB_TOKEN."
-            echo "token=${{ secrets.GITHUB_TOKEN }}" >> $GITHUB_OUTPUT
+          if [ "${{ secrets.GH_PAT }}" == "" ]; then
+            echo "GH_PAT is empty. Substituting it with GH_PAT."
+            echo "token=${{ secrets.GH_PAT }}" >> $GITHUB_OUTPUT
           else
-            echo "Using GITHUB_TOKEN."
-            echo "token=${{ secrets.GITHUB_TOKEN }}" >> $GITHUB_OUTPUT
+            echo "Using GH_PAT."
+            echo "token=${{ secrets.GH_PAT }}" >> $GITHUB_OUTPUT
           fi
         shell: bash
 
@@ -857,7 +857,7 @@ jobs:
           steps.check-if-release-exists.outputs.release-exists == 'true'
         uses: svenstaro/upload-release-action@v2
         with:
-          repo_token: ${{ secrets.GITHUB_TOKEN }}
+          repo_token: ${{ secrets.GH_PAT }}
           file: ${{ env.PKGBUILD }}
           asset_name: ${{ env.PKGBUILD }}
           tag: ${{ github.ref }}

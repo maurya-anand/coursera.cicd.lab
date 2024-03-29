@@ -104,7 +104,7 @@ jobs:
       - name: Run write-good 🏃‍♀️
         uses: actions/github-script@v7
         with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
+          github-token: ${{ secrets.GH_PAT }}
           script: |
             const writeGood = require('write-good');
             const path = require('path');
@@ -159,6 +159,6 @@ jobs:
             && inputs.enable-annotations
         uses: kibalabs/github-action-create-annotations@v0.2.0
         with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
+          github-token: ${{ secrets.GH_PAT }}
           json-file-path: ./annotations.json
           fail-on-error: false
